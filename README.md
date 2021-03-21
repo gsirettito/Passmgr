@@ -1,3 +1,6 @@
 # Passmgr
 
-A simple password generator with a qrcode to easy share
+A secure password generator.
+
+## Features:
+Allows easy sharing via QR code.
