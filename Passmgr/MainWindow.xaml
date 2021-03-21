@@ -13,9 +13,41 @@
     <Window.Resources>
         <sttc:LogicBooleanConverter x:Key="BooleanConverter"/>
 
+        <SolidColorBrush x:Key="ButtonBackground" Color="#FFECECF0"/>
+        <SolidColorBrush x:Key="ButtonForeground" Color="#FF000000"/>
+        <SolidColorBrush x:Key="ButtonBorderBrush" Color="#FFACACAC"/>
+        <SolidColorBrush x:Key="ButtonHoverBackground" Color="#FFFDE9C6"/>
+        <SolidColorBrush x:Key="ButtonHoverForeground" Color="#FF000000"/>
+        <SolidColorBrush x:Key="ButtonHoverBorderBrush" Color="#FFD2A85E"/>
+        <SolidColorBrush x:Key="ButtonDisableBackground" Color="#FFFBFBFB"/>
+        <SolidColorBrush x:Key="ButtonDisableForeground" Color="#FFA8AEC3"/>
+        <SolidColorBrush x:Key="ButtonDisableBorderBrush" Color="#FFCCCEDB"/>
+        <SolidColorBrush x:Key="ButtonPressedBackground" Color="#FFD2A85E"/>
+        <SolidColorBrush x:Key="ButtonPressedForeground" Color="#FFF"/>
+        <SolidColorBrush x:Key="ButtonPressedBorderBrush" Color="#FFD2A85E"/>
+
+        <SolidColorBrush x:Key="SeparatorBackground" Color="#FFDDDDDD"/>
+
+        <SolidColorBrush x:Key="TextBoxBackground" Color="#FFFCFCFC"/>
+        <SolidColorBrush x:Key="TextBoxForeground" Color="#FF000000"/>
+        <SolidColorBrush x:Key="TextBoxBorderBrush" Color="#FF798493"/>
+        <SolidColorBrush x:Key="TextBoxFocusedBackground" Color="#FFFCFCFC"/>
+        <SolidColorBrush x:Key="TextBoxFocusedForeground" Color="#FF000000"/>
+        <SolidColorBrush x:Key="TextBoxFocusedBorderBrush" Color="#FFD2A85E"/>
+        <SolidColorBrush x:Key="TextBoxHoverBackground" Color="#FFFCFCFC"/>
+        <SolidColorBrush x:Key="TextBoxHoverForeground" Color="#FF000000"/>
+        <SolidColorBrush x:Key="TextBoxHoverBorderBrush" Color="#FFD2A85E"/>
+        <SolidColorBrush x:Key="TextBoxDisableBackground" Color="#FFFBFBFB"/>
+        <SolidColorBrush x:Key="TextBoxDisableForeground" Color="#FFA8AEC3"/>
+        <SolidColorBrush x:Key="TextBoxDisableBorderBrush" Color="#FFCCCEDB"/>
+
+        <Style TargetType="Separator">
+            <Setter Property="Background" Value="{StaticResource SeparatorBackground}"/>
+        </Style>
+
         <Style TargetType="Button">
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="BorderBrush" Value="#FFF5D498"/>
+            <Setter Property="Background" Value="{StaticResource ButtonBackground}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource ButtonBorderBrush}"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -33,16 +65,17 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="true">
-                                <Setter TargetName="back" Property="Background" Value="#FFF5CC84"/>
-                                <Setter TargetName="back" Property="BorderBrush" Value="#FFF5D498"/>
+                                <Setter TargetName="back" Property="Background" Value="{StaticResource ButtonHoverBackground}"/>
+                                <Setter TargetName="back" Property="BorderBrush" Value="{StaticResource ButtonHoverBorderBrush}"/>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="true">
-                                <Setter TargetName="back" Property="Background" Value="#FFF5D498"/>
-                                <Setter TargetName="back" Property="BorderBrush" Value="#FFF5D498"/>
+                                <Setter TargetName="back" Property="Background" Value="{StaticResource ButtonPressedBackground}"/>
+                                <Setter TargetName="back" Property="BorderBrush" Value="{StaticResource ButtonPressedBorderBrush}"/>
+                                <Setter TargetName="content" Property="Foreground" Value="{StaticResource ButtonPressedForeground}"/>
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="false">
-                                <Setter TargetName="content" Property="Foreground" Value="#FFA8AEC3"/>
-                                <Setter TargetName="back" Property="BorderBrush" Value="#FFA8AEC3"/>
+                                <Setter TargetName="content" Property="Foreground" Value="{StaticResource ButtonDisableForeground}"/>
+                                <Setter TargetName="back" Property="BorderBrush" Value="{StaticResource ButtonDisableBorderBrush}"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -51,8 +84,8 @@
         </Style>
 
         <Style TargetType="TextBox">
-            <Setter Property="BorderBrush" Value="#FFD7E4FF"/>
-            <Setter Property="Background" Value="#FFFCFCFC"/>
+            <Setter Property="BorderBrush" Value="{StaticResource TextBoxBorderBrush}"/>
+            <Setter Property="Background" Value="{StaticResource TextBoxBackground}"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="Template">
                 <Setter.Value>
@@ -66,10 +99,14 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsFocused" Value="true">
-                                <Setter TargetName="back" Property="BorderBrush" Value="#FFE5C365"/>
+                                <Setter TargetName="back" Property="BorderBrush" Value="{StaticResource TextBoxHoverBorderBrush}"/>
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="true">
-                                <Setter TargetName="back" Property="BorderBrush" Value="#FFE5C365"/>
+                                <Setter TargetName="back" Property="BorderBrush" Value="{StaticResource TextBoxHoverBorderBrush}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" Value="{StaticResource ButtonDisableForeground}"/>
+                                <Setter TargetName="back" Property="BorderBrush" Value="{StaticResource ButtonDisableBorderBrush}"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -102,7 +139,7 @@
                                               Data="M48.4375,110.4375 L51.4995,112.812 L56.3745,107.24883"
                                               Opacity="0"
                                               Stretch="Fill"
-                                              Stroke="#FFD2A85E"
+                                              Stroke="{StaticResource ButtonPressedForeground}"
                                               StrokeEndLineCap="Triangle"
                                               StrokeStartLineCap="Triangle"
                                               StrokeThickness="1.5" 
@@ -111,7 +148,7 @@
                                                    Width="8"
                                                    Height="8"
                                                    Opacity="0"
-                                                   Fill="#FFD2A85E" />
+                                                   Fill="{StaticResource ButtonPressedForeground}" />
                                         <Rectangle x:Name="DisabledVisualElement"
                                                    Fill="#FFA8AEC3"
                                                    Opacity="0"/>
@@ -133,33 +170,34 @@
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource Fluent.Ribbon.Brushes.Button.MouseOver.BorderBrush}" />
-                                <Setter TargetName="border" Property="Background" Value="{DynamicResource Fluent.Ribbon.Brushes.Button.MouseOver.Background}" />
-                                <Setter TargetName="CheckIcon" Property="Stroke" Value="{DynamicResource Fluent.Ribbon.Brushes.CheckBox.MouseOver.Stroke}" />
-                                <Setter TargetName="IndeterminateIcon" Property="Fill" Value="{DynamicResource Fluent.Ribbon.Brushes.CheckBox.MouseOver.Stroke}" />
+                                <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource ButtonHoverBorderBrush}" />
+                                <Setter TargetName="border" Property="Background" Value="{StaticResource ButtonHoverBackground}" />
+                                <Setter TargetName="CheckIcon" Property="Stroke" Value="{StaticResource ButtonHoverForeground}" />
+                                <Setter TargetName="IndeterminateIcon" Property="Fill" Value="{StaticResource ButtonHoverForeground}" />
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource Fluent.Ribbon.Brushes.Button.Pressed.BorderBrush}" />
-                                <Setter TargetName="border" Property="Background" Value="{DynamicResource Fluent.Ribbon.Brushes.Button.Pressed.Background}" />
-                                <Setter TargetName="CheckIcon" Property="Stroke" Value="{DynamicResource Fluent.Ribbon.Brushes.CheckBox.Pressed.Stroke}" />
-                                <Setter TargetName="IndeterminateIcon" Property="Fill" Value="{DynamicResource Fluent.Ribbon.Brushes.CheckBox.Pressed.Stroke}" />
+                                <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource ButtonPressedBorderBrush}" />
+                                <Setter TargetName="border" Property="Background" Value="{StaticResource ButtonPressedBackground}" />
+                                <Setter TargetName="CheckIcon" Property="Stroke" Value="{StaticResource ButtonPressedForeground}" />
+                                <Setter TargetName="IndeterminateIcon" Property="Fill" Value="{StaticResource ButtonPressedForeground}" />
                             </Trigger>
                             <Trigger Property="IsChecked" Value="True">
                                 <Setter TargetName="CheckIcon" Property="Opacity" Value="1" />
-                                <Setter Property="Background" Value="#FFFFEDC8" />
-                                <Setter Property="BorderBrush" Value="#FFD2A85E" />
+                                <Setter Property="Background" Value="{StaticResource ButtonPressedBackground}" />
+                                <Setter Property="BorderBrush" Value="{StaticResource ButtonPressedBorderBrush}" />
                             </Trigger>
                             <Trigger Property="IsChecked" Value="{x:Null}">
                                 <Setter TargetName="IndeterminateIcon" Property="Opacity" Value="1" />
-                                <Setter Property="BorderBrush" Value="#FFD2A85E" />
+                                <Setter Property="Background" Value="{StaticResource ButtonPressedBackground}" />
+                                <Setter Property="BorderBrush" Value="{StaticResource ButtonPressedBorderBrush}" />
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="False">
                                 <Setter TargetName="contentPresenter" Property="Opacity" Value=".55" />
                                 <Setter TargetName="DisabledVisualElement" Property="Opacity" Value=".55" />
-                                <Setter TargetName="IndeterminateIcon" Property="Fill" Value="#FFA8AEC3" />
-                                <Setter TargetName="CheckIcon" Property="Stroke" Value="#FFA8AEC3" />
-                                <Setter Property="BorderBrush" Value="#FFA8AEC3" />
-                                <Setter Property="Background" Value="{x:Null}" />
+                                <Setter TargetName="IndeterminateIcon" Property="Fill" Value="{StaticResource ButtonDisableForeground}" />
+                                <Setter TargetName="CheckIcon" Property="Stroke" Value="{StaticResource ButtonDisableForeground}" />
+                                <Setter Property="BorderBrush" Value="{StaticResource ButtonDisableBorderBrush}" />
+                                <Setter Property="Background" Value="{StaticResource ButtonDisableBackground}" />
                             </Trigger>
                             <Trigger Property="FlowDirection" Value="RightToLeft">
                                 <Setter TargetName="CheckIcon" Property="LayoutTransform">
@@ -175,7 +213,7 @@
         </Style>
 
         <Style TargetType="stt:NumericBox">
-            <Setter Property="BorderBrush" Value="#FFD7E4FF"/>
+            <Setter Property="BorderBrush" Value="{StaticResource TextBoxBorderBrush}"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -196,31 +234,33 @@
                                 </Grid.ColumnDefinitions>
                                 <Label Grid.Column="0" Content="{TemplateBinding Tag}" Padding="0"
                                    HorizontalContentAlignment="Center"/>
-                                <Button Name="dn" Grid.Column="1" BorderThickness="0" Background="#FFF2F2F2" Padding="4"
+                                <Button Name="dn" Grid.Column="1" BorderThickness="0" Padding="4"
                                     Command="{Binding DeleteCharacterCommand, RelativeSource={RelativeSource AncestorType=stt:NumericBox}}"
                                     CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=stt:NumericBox}}">
-                                    <Path Data="M4.5 9 0 4.5 4.5 0" StrokeThickness="1" Stroke="#FF949494" Stretch="Uniform"/>
+                                    <Path Data="M4.5 9 0 4.5 4.5 0" StrokeThickness="1" Stroke="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}" Stretch="Uniform"/>
                                 </Button>
-                                <ScrollViewer x:Name="PART_ContentHost" Grid.Column="2" Background="White"/>
-                                <Button Name="up" Grid.Column="3" BorderThickness="0" Background="#FFF2F2F2" Padding="4"
+                                <ScrollViewer x:Name="PART_ContentHost" Grid.Column="2" Background="{TemplateBinding Background}"/>
+                                <Button Name="up" Grid.Column="3" BorderThickness="0" Padding="4"
                                     Command="{Binding AddCharacterCommand, RelativeSource={RelativeSource AncestorType=stt:NumericBox}}"
                                     CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=stt:NumericBox}}">
-                                    <Path Data="M0 9 L 4.5 4.5 L 0 0" StrokeThickness="1" Stroke="#FF949494" Stretch="Uniform"/>
+                                    <Path Data="M0 9 L 4.5 4.5 L 0 0" StrokeThickness="1" Stroke="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}" Stretch="Uniform"/>
                                 </Button>
                             </Grid>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger SourceName="up" Property="IsPressed" Value="True">
                                 <Setter TargetName="PART_ContentHost" Property="Background" Value="Azure"/>
+                                <Setter TargetName="up" Property="Foreground" Value="{StaticResource ButtonPressedForeground}"/>
                             </Trigger>
                             <Trigger SourceName="dn" Property="IsPressed" Value="True">
                                 <Setter TargetName="PART_ContentHost" Property="Background" Value="Azure"/>
+                                <Setter TargetName="dn" Property="Foreground" Value="{StaticResource ButtonPressedForeground}"/>
                             </Trigger>
                             <Trigger Property="IsFocused" Value="true">
-                                <Setter TargetName="back" Property="BorderBrush" Value="#FFE5C365"/>
+                                <Setter TargetName="back" Property="BorderBrush" Value="{StaticResource TextBoxFocusedBorderBrush}"/>
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="true">
-                                <Setter TargetName="back" Property="BorderBrush" Value="#FFE5C365"/>
+                                <Setter TargetName="back" Property="BorderBrush" Value="{StaticResource TextBoxHoverBorderBrush}"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -251,9 +291,9 @@
                        FontFamily="Consolas"
                        TextTrimming="CharacterEllipsis">[A-Za-z0-9].</TextBlock>
             <Button x:Name="copy_btn" HorizontalAlignment="Center" Margin="10,5" Padding="10,2" Click="copy_Click">Copy</Button>
-            <Separator Margin="1,5,1,0" Background="#FFD7E4FF"/>
+            <Separator Margin="1,5,1,0"/>
             <Image x:Name="qrImage" Margin="10,5" Width="180" Height="180"/>
-            <Separator Margin="1,0,1,10" Background="#FFD7E4FF"/>
+            <Separator Margin="1,0,1,10"/>
             <BulletDecorator Margin="10,2">
                 <BulletDecorator.Bullet>
                     <TextBlock>Lenght:</TextBlock>
@@ -263,7 +303,7 @@
                                 HorizontalAlignment="Left"
                                 Margin="5,0" Value="12"></stt:NumericBox>
             </BulletDecorator>
-            <Separator Margin="3,10" Background="#FFD7E4FF"/>
+            <Separator Margin="3,10"/>
             <CheckBox x:Name="mayuscule" Margin="10,2" IsChecked="True">Mayuscule (A-Z)</CheckBox>
             <CheckBox x:Name="minuscule" Margin="10,2" IsChecked="True">Minuscule (a-z)</CheckBox>
             <CheckBox x:Name="digits" Margin="10,2" IsChecked="True">Digits (0-9)</CheckBox>
